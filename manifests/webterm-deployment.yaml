@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: webterm
+  name: webterm-deployment
+  # namespace: sharedservices
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webterm
+  template:
+    metadata:
+      labels:
+        app: webterm
+        # version: mainline
+    spec:
+      containers:
+      - image: webterm
+        imagePullPolicy: Never
+        name: webterm
+        ports:
+        - containerPort: 7681
+          name: http
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "200m"
+            memory: "256Mi"
+      serviceAccountName: test-admin
