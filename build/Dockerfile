@@ -1,12 +1,9 @@
 FROM redhat/ubi9:latest
 
 # Install the `tail` command (if not pre-installed in ubi8)
-RUN yum update
+RUN yum update -y
 RUN yum install -y coreutils --allowerasing -y
-COPY ttyd.arm /usr/local/bin/ttyd
-COPY tini-arm64 /usr/local/bin/tini
-COPY kubectl /usr/local/bin/kubectl
-COPY k9s /usr/local/bin/k9s
+COPY binaries/* /usr/local/bin/
 COPY generate_kubeconfig.sh /tmp
 COPY bootstrap.sh /tmp
 

@@ -30,4 +30,4 @@ spec:
           limits:
             cpu: "200m"
             memory: "256Mi"
-      serviceAccountName: test-admin
+      # serviceAccountName: test-admin
